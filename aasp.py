@@ -30,12 +30,12 @@ for i in track_name:
     soundtrack.append(d)
 
 # get the indices for cut and label the data
-sec = 5  # 10 seconds long data
+sec = 10  # 10 seconds long data
 # for ii in [l1, l2, l3]:
 mark = np.array([i[0:2] for i in l1]).astype('double')*samp_freq
 ind_mark = mark.astype('int')
 trunc_size = sec*samp_freq
-s = 10
+s = 0  # counter for how many training samples
 for i in range(36):
     ind1 = ind_mark[i-1, 1] if i >0 else 0
     ind2 = ind_mark[i, 0]
@@ -48,8 +48,8 @@ for i in range(36):
         samp1 = soundtrack[0][start:ends]
         s +=1
     else:  # ends in the range that will cut the event
-        indx = int((sect_ind + 1)/2)
-        if ends - ind_mark[indx][0] > ends- ind_mark[indx][1]:  # ends closer to the right(bigger number)
+        indx = int((sect_ind - 1)/2)
+        if abs(ends - ind_mark[indx][0]) > abs(ends- ind_mark[indx][1]):  # ends closer to the right(bigger number)
             ends = ind_mark[indx][1] +1  # include the tail event
             start = ends - trunc_size
             if ind1 < start <ind2:  # check the updated start available
