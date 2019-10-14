@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AASP_train.iml" filepath="$PROJECT_DIR$/.idea/AASP_train.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/process_aasp.iml" filepath="$PROJECT_DIR$/.idea/process_aasp.iml" />
     </modules>
   </component>
 </project>
