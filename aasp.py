@@ -45,12 +45,15 @@ for i in range(36):
     if sect_ind % 2 == 0:  # This is OK to choose
         samp1 = soundtrack[0][start:ends]
     else:  # ends in the range that will cut the event
-        if ends - ind_mark[sect_ind][0] > ends- ind_mark[sect_ind][1]:  # ends closer to the right(bigger number)
-            ends = ind_mark[sect_ind][1] +1  # include the tail event
+        indx = int((sect_ind + 1)/2)
+        if ends - ind_mark[indx][0] > ends- ind_mark[indx][1]:  # ends closer to the right(bigger number)
+            ends = ind_mark[indx][1] +1  # include the tail event
             start = ends - trunc_size
             if ind1 < start <ind2:  # check the updated start available
                 samp1 = soundtrack[0][start:ends]
-
         else: # ends closer to the right(bigger number)
-
+            ends = ind_mark[indx][0] - 1  # include the tail event
+            start = ends - trunc_size
+            if ind1 < start <ind2:  # check the updated start available
+                samp1 = soundtrack[0][start:ends]
 

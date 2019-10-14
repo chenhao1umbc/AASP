@@ -13,7 +13,7 @@
   </component>
   <component name="ProjectId" id="1SArBCIIU6KPP105nPg72sb50Sf" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/aasp.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="pyconsole" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -53,6 +53,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.aasp" />
         <item itemvalue="Python.aasp" />
         <item itemvalue="Python.aasp" />
         <item itemvalue="Python.aasp" />
