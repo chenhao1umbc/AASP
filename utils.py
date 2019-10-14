@@ -8,7 +8,7 @@ import wave
 import bisect
 
 import torch
-import torch.nn.functional as F
+import scipy.signal as sg
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -64,4 +64,40 @@ def readwav(file):
     array = _wav2array(nchannels, sampwidth, data)
     return rate, sampwidth, array
 
+
+def label_str2num(l1, l2, l3, labels):
+    """
+    This function will turn the string labels in to vector
+    :param l1: script01_sid
+    :param l2: script02_sid
+    :param l3: script03_sid
+    :param labels: the labels with string
+    :return: matrix of 0 and 1
+    """
+    pool1 = [i[2] for i in l1]
+    pool2 = [i[2] for i in l2]
+    pool3 = [i[2] for i in l3]
+    pool1.extend(pool2)
+    pool1.extend(pool3)
+    pool = list(set(pool1))
+    pool.sort()
+
+    N = len(labels)  # number of examples
+    Y = np.zeros((N, len(pool)))  # initialization
+    for i in range(N):
+        for ii in labels[i]:  # each ii is a string
+            Y[i, pool.index(ii)] = 1
+    return Y
+
+
+def spectro(x, bw=256, overlap=0.1, fs=44.1e3, showplot=True):
+    f, t, sx = sg.spectrogram(x, fs=fs, nperseg=bw, noverlap=int(bw*overlap))
+    if showplot:
+        plt.figure()
+        plt.title('Spectrogram')
+        plt.pcolormesh(t, f, sx)
+    plt.ylabel('Frequency [Hz]')
+    plt.xlabel('Time [sec]')
+    plt.show()
+    return sx
 
