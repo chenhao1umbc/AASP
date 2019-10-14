@@ -30,20 +30,23 @@ for i in track_name:
     soundtrack.append(d)
 
 # get the indices for cut and label the data
-sec = 10  # 10 seconds long data
+sec = 5  # 10 seconds long data
 # for ii in [l1, l2, l3]:
 mark = np.array([i[0:2] for i in l1]).astype('double')*samp_freq
 ind_mark = mark.astype('int')
 trunc_size = sec*samp_freq
+s = 10
 for i in range(36):
     ind1 = ind_mark[i-1, 1] if i >0 else 0
     ind2 = ind_mark[i, 0]
+    if ind1 + trunc_size > soundtrack[0].shape[-1] : break  # out of boundry
     # start should between ind1 and ind2, ends should between ind1_end and ind2_end
     start = int((ind1 + ind2)/2)
     ends = start + trunc_size
     sect_ind = bisect.bisect(ind_mark.reshape(-1), ends)
     if sect_ind % 2 == 0:  # This is OK to choose
         samp1 = soundtrack[0][start:ends]
+        s +=1
     else:  # ends in the range that will cut the event
         indx = int((sect_ind + 1)/2)
         if ends - ind_mark[indx][0] > ends- ind_mark[indx][1]:  # ends closer to the right(bigger number)
@@ -51,9 +54,10 @@ for i in range(36):
             start = ends - trunc_size
             if ind1 < start <ind2:  # check the updated start available
                 samp1 = soundtrack[0][start:ends]
+                s += 1
         else: # ends closer to the right(bigger number)
             ends = ind_mark[indx][0] - 1  # include the tail event
             start = ends - trunc_size
             if ind1 < start <ind2:  # check the updated start available
                 samp1 = soundtrack[0][start:ends]
-
+                s +=1
