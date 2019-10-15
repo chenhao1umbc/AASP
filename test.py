@@ -21,42 +21,40 @@ files.sort()
 
 route = '/mnt/d/Downloads/AASP_test/'
 # route = '/home/chenhao1/Hpython/AASP_train/annotation2/'
+script = []
 for i in files:
     with open(route + i +'_sid.txt', 'r') as d:
         # print(type(d.read()))
-        d1 = d.read()
+        script.append(d.read())
 
-# make the string into list of events
-l1, l2, l3 = d1.split('\n'), d2.split('\n'), d3.split('\n')
-l1 = [l.split('\t') for l in l1[:-1]]  # [:-1] to remove the '' in the end
-l2 = [l.split('\t') for l in l2[:-1]]
-l3 = [l.split('\t') for l in l3[:-1]]
+tables = []
+for l in script:
+    ll = l.split('\n')[:-1]
+    tables.append([i.split('\t') for i in ll])
 
 # get the data from wave files
 soundtrack = []
-# route = '/mnt/d/Downloads/AASP_train/bformat/'
-route = '/home/chenhao1/Hpython/AASP_train/bformat/'
-track_name = [route + 'script0'+str(i1)+'-0'+str(i2)+'.wav' for i1 in range(1, 4) for i2 in range(1, 5)]
+route = '/mnt/d/Downloads/AASP_test/'
+# route = '/home/chenhao1/Hpython/AASP_test/'
+track_name = [route + i +'.wav' for i in files]
 for i in track_name:
     samp_freq, _, d = readwav(i)  # samp_freq is float, d is a numpy array
-    d = (d / np.linalg.norm(d)).squeeze()  # d is 1-d time series
+    d = (d / np.linalg.norm(d)).squeeze()  # d is 1-d time series with 2 channels shape of [N, 2]
     soundtrack.append(d)
 
 # get the indices for cut and label the data
 sec = 10  # 10 seconds long data
-s = 0  # counter for how many training samples
 trunc_size = sec*samp_freq
+ntracks = len(track_name)
 samp_pool = np.random.rand(trunc_size)
 label_pool = []
-for ii in [l1, l2, l3]:
-    mark = np.array([i[0:2] for i in ii]).astype('double')*samp_freq
+for ii in range(ntracks):
+    mark = np.array([i[0:2] for i in tables[ii]]).astype('double')*samp_freq
     ind_mark = mark.astype('int')
-    all_labels =  [i[2] for i in ii]
-    if ii is l1: st_len, st = soundtrack[0].shape[-1], np.array(soundtrack[0:4])
-    if ii is l2: st_len, st = soundtrack[4].shape[-1], np.array(soundtrack[4:8])
-    if ii is l3: st_len, st = soundtrack[8].shape[-1], np.array(soundtrack[8:])
+    all_labels =  [i[2] for i in tables[ii]]
+    st_len, st = soundtrack[ii].shape[0], soundtrack[ii].T  # each soundtrack is shape of [N, 2]
 
-    for i in range(len(ii)):
+    for i in range(len(tables[ii])):
         ind1 = ind_mark[i-1, 1] if i >0 else 0
         ind2 = ind_mark[i, 0]
         if ind1 + trunc_size > st_len : break  # out of boundry
@@ -67,7 +65,7 @@ for ii in [l1, l2, l3]:
         if sect_ends % 2 == 0:  # This is OK to choose
             samp_pool = np.vstack((samp_pool, st[:, start:ends]))
             sect_start = bisect.bisect(ind_mark.reshape(-1), start)
-            for m in range(4):  # because st contains four samples
+            for m in range(2):  # because st contains 2 samples
                 label_pool.append(all_labels[sect_start // 2: sect_ends // 2])
         else:  # ends in the range that will cut the event
             indx = int((sect_ends - 1)/2)
@@ -78,8 +76,8 @@ for ii in [l1, l2, l3]:
                     samp_pool = np.vstack((samp_pool, st[:, start:ends]))
                     sect_start = bisect.bisect(ind_mark.reshape(-1), start)
                     sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
-                    for m in range(4):  # because st contains four samples
-                        label_pool.append(all_labels[sect_start//2 : sect_ends//2 ])
+                    for m in range(2):  # because st contains 2 samples
+                        label_pool.append(all_labels[sect_start // 2: sect_ends // 2])
             else: # ends closer to the right(bigger number)
                 ends = ind_mark[indx][0] - 1  # exclude the tail event
                 start = ends - trunc_size
@@ -87,8 +85,8 @@ for ii in [l1, l2, l3]:
                     samp_pool = np.vstack((samp_pool, st[:, start:ends]))
                     sect_start = bisect.bisect(ind_mark.reshape(-1), start)
                     sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
-                    for m in range(4):  # because st contains four samples
-                        label_pool.append(all_labels[sect_start//2 : sect_ends//2 ])
+                    for m in range(2):  # because st contains 2 samples
+                        label_pool.append(all_labels[sect_start // 2: sect_ends // 2])
 
 X = samp_pool[1:, :]
-Y = label_str2num(l1, l2, l3, label_pool)
+# Y = label_str2num(l1, l2, l3, label_pool)
