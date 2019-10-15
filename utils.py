@@ -8,6 +8,7 @@ import wave
 import bisect
 
 import torch
+import cv2
 import scipy.signal as sg
 import numpy as np
 import matplotlib.pyplot as plt
@@ -90,14 +91,41 @@ def label_str2num(l1, l2, l3, labels):
     return Y
 
 
-def spectro(x, bw=256, overlap=0.1, fs=44.1e3, showplot=True):
+def spectro(x, bw=707, overlap=0.9, fs=44.1e3, showplot=False):
+    """
+    this will calc the spectrogram, using the setting of YOU's paper
+    :param x:
+    :param bw:
+    :param overlap:
+    :param fs:
+    :param showplot:
+    :return:
+    """
     f, t, sx = sg.spectrogram(x, fs=fs, nperseg=bw, noverlap=int(bw*overlap))
     if showplot:
         plt.figure()
         plt.title('Spectrogram')
+        # plt.imshow(sx, aspect='auto')
         plt.pcolormesh(t, f, sx)
-    plt.ylabel('Frequency [Hz]')
-    plt.xlabel('Time [sec]')
-    plt.show()
+        plt.ylabel('Frequency [Hz]')
+        plt.xlabel('Time [sec]')
+        plt.show()
     return sx
+
+
+def downsample(x, t_len=200, f_len=100):
+    """
+    This function will downsample the audio signal in frequency domain
+    by converting to spectrogram and doing the downsampling on the image
+    :param x: input data N by T
+    :return:
+    """
+    len_x = x.shape[0]
+    newx = np.zeros((len_x, int(t_len*f_len)))
+    for i in range(len_x):
+        sx = spectro(x[i])
+        cx = cv2.resize(sx, (t_len, f_len), interpolation=cv2.INTER_CUBIC)
+        newx[i] = cx.reshape(-1)
+    return newx
+
 

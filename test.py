@@ -44,6 +44,7 @@ for i in track_name:
 
 # get the indices for cut and label the data
 sec = 10  # 10 seconds long data
+<<<<<<< HEAD
 trunc_size = sec*samp_freq
 ntracks = len(track_name)
 samp_pool = np.random.rand(trunc_size)
@@ -55,6 +56,21 @@ for ii in range(ntracks):
     st_len, st = soundtrack[ii].shape[0], soundtrack[ii].T  # each soundtrack is shape of [N, 2]
 
     for i in range(len(tables[ii])):
+=======
+s = 0  # counter for how many training samples
+trunc_size = sec*samp_freq
+samp_pool = np.random.rand(trunc_size)
+label_pool = []
+for ii in [l1, l2, l3]:
+    mark = np.array([i[0:2] for i in ii]).astype('double')*samp_freq
+    ind_mark = mark.astype('int')
+    all_labels =  [i[2] for i in ii]
+    if ii is l1: st_len, st = soundtrack[0].shape[-1], np.array(soundtrack[0:4])
+    if ii is l2: st_len, st = soundtrack[4].shape[-1], np.array(soundtrack[4:8])
+    if ii is l3: st_len, st = soundtrack[8].shape[-1], np.array(soundtrack[8:])
+
+    for i in range(len(ii)):
+>>>>>>> 63d3bd9727476771479bacc614ea3b7790ca9d54
         ind1 = ind_mark[i-1, 1] if i >0 else 0
         ind2 = ind_mark[i, 0]
         if ind1 + trunc_size > st_len : break  # out of boundry
@@ -65,7 +81,11 @@ for ii in range(ntracks):
         if sect_ends % 2 == 0:  # This is OK to choose
             samp_pool = np.vstack((samp_pool, st[:, start:ends]))
             sect_start = bisect.bisect(ind_mark.reshape(-1), start)
+<<<<<<< HEAD
             for m in range(2):  # because st contains 2 samples
+=======
+            for m in range(4):  # because st contains four samples
+>>>>>>> 63d3bd9727476771479bacc614ea3b7790ca9d54
                 label_pool.append(all_labels[sect_start // 2: sect_ends // 2])
         else:  # ends in the range that will cut the event
             indx = int((sect_ends - 1)/2)
@@ -76,8 +96,13 @@ for ii in range(ntracks):
                     samp_pool = np.vstack((samp_pool, st[:, start:ends]))
                     sect_start = bisect.bisect(ind_mark.reshape(-1), start)
                     sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
+<<<<<<< HEAD
                     for m in range(2):  # because st contains 2 samples
                         label_pool.append(all_labels[sect_start // 2: sect_ends // 2])
+=======
+                    for m in range(4):  # because st contains four samples
+                        label_pool.append(all_labels[sect_start//2 : sect_ends//2 ])
+>>>>>>> 63d3bd9727476771479bacc614ea3b7790ca9d54
             else: # ends closer to the right(bigger number)
                 ends = ind_mark[indx][0] - 1  # exclude the tail event
                 start = ends - trunc_size
@@ -85,8 +110,17 @@ for ii in range(ntracks):
                     samp_pool = np.vstack((samp_pool, st[:, start:ends]))
                     sect_start = bisect.bisect(ind_mark.reshape(-1), start)
                     sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
+<<<<<<< HEAD
                     for m in range(2):  # because st contains 2 samples
                         label_pool.append(all_labels[sect_start // 2: sect_ends // 2])
 
 X = samp_pool[1:, :]
 # Y = label_str2num(l1, l2, l3, label_pool)
+=======
+                    for m in range(4):  # because st contains four samples
+                        label_pool.append(all_labels[sect_start//2 : sect_ends//2 ])
+
+X = downsample(samp_pool[1:, :], t_len=150, f_len=80)
+Y = label_str2num(l1, l2, l3, label_pool)
+torch.save([X,Y], 'aasp_test.pt')
+>>>>>>> 63d3bd9727476771479bacc614ea3b7790ca9d54
