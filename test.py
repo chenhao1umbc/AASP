@@ -19,8 +19,8 @@ file ='''20120921room104script1take2
 files = file.split('\n')
 files.sort()
 
-route = '/mnt/d/Downloads/AASP_test/'
-# route = '/home/chenhao1/Hpython/AASP_train/annotation2/'
+# route = '/mnt/d/Downloads/AASP_test/'
+route = '/home/chenhao1/Hpython/AASP_test/'
 script = []
 for i in files:
     with open(route + i +'_sid.txt', 'r') as d:
@@ -34,8 +34,8 @@ for l in script:
 
 # get the data from wave files
 soundtrack = []
-route = '/mnt/d/Downloads/AASP_test/'
-# route = '/home/chenhao1/Hpython/AASP_test/'
+# route = '/mnt/d/Downloads/AASP_test/'
+route = '/home/chenhao1/Hpython/AASP_test/'
 track_name = [route + i +'.wav' for i in files]
 for i in track_name:
     samp_freq, _, d = readwav(i)  # samp_freq is float, d is a numpy array
@@ -55,12 +55,15 @@ for ii in range(ntracks):
     st_len, st = soundtrack[ii].shape[0], soundtrack[ii].T  # each soundtrack is shape of [N, 2]
 
     for i in range(len(tables[ii])):
-        ind1 = ind_mark[i-1, 1] if i >0 else 0
-        ind2 = ind_mark[i, 0]
-        if ind1 + trunc_size > st_len : break  # out of boundry
+        ind1 = ind_mark[i-1, 1] if i >0 else 0     # this end of previous event
+        ind2 = ind_mark[i, 0]       # beginning of the current event
+        if ind1 + trunc_size > st_len : break  # out of boundary
         # start should between ind1 and ind2, ends should between ind1_end and ind2_end
         start = int((ind1 + ind2)/2)
         ends = start + trunc_size
+        if ends > st.shape[-1]:  # out of boundary because of start moved from ind1 to (ind1 + ind2)/2
+            start = ind1
+            ends = start + trunc_size
         sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
         if sect_ends % 2 == 0:  # This is OK to choose
             samp_pool = np.vstack((samp_pool, st[:, start:ends]))
@@ -89,6 +92,6 @@ for ii in range(ntracks):
                         label_pool.append(all_labels[sect_start // 2: sect_ends // 2])
 
 X = downsample(samp_pool[1:, :], t_len=150, f_len=80)
-Y = label_str2num(l1, l2, l3, label_pool)
+Y = label_str2num_test(tables, label_pool)
 # torch.save([X,Y], 'aasp_test.pt')
 

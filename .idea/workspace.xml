@@ -20,7 +20,7 @@
   </component>
   <component name="ProjectId" id="1S1ArolJKBmx1S6Hrl6Wn5ftzdz" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WSCDL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -39,7 +39,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.utils">
+  <component name="RunManager" selected="Python.test">
     <configuration name="aasp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="process_aasp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -86,6 +86,9 @@
       <module name="process_aasp" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -102,8 +105,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.utils" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.utils" />
         <item itemvalue="Python.aasp" />
       </list>
     </recent_temporary>

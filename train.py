@@ -46,12 +46,15 @@ for ii in [l1, l2, l3]:
     if ii is l3: st_len, st = soundtrack[8].shape[-1], np.array(soundtrack[8:])
 
     for i in range(len(ii)):
-        ind1 = ind_mark[i-1, 1] if i >0 else 0
-        ind2 = ind_mark[i, 0]
-        if ind1 + trunc_size > st_len : break  # out of boundry
+        ind1 = ind_mark[i-1, 1] if i >0 else 0     # this end of previous event
+        ind2 = ind_mark[i, 0]       # beginning of the current event
+        if ind1 + trunc_size > st_len : break  # out of boundary
         # start should between ind1 and ind2, ends should between ind1_end and ind2_end
         start = int((ind1 + ind2)/2)
         ends = start + trunc_size
+        if ends > st.shape[-1]:  # out of boundary because of start moved from ind1 to (ind1 + ind2)/2
+            start = ind1
+            ends = start + trunc_size
         sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
         if sect_ends % 2 == 0:  # This is OK to choose
             samp_pool = np.vstack((samp_pool, st[:, start:ends]))
@@ -81,7 +84,7 @@ for ii in [l1, l2, l3]:
 
 X = downsample(samp_pool[1:, :], t_len=150, f_len=80)
 Y = label_str2num(l1, l2, l3, label_pool)
-torch.save([X,Y], 'aasp_train.pt')
+torch.save([X,Y], 'aasp_train_80*150.pt')
 # with open('aasp_train.pt', 'wb') as o:
 #     pickle.dump([X,Y], o)
 #

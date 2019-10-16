@@ -91,6 +91,28 @@ def label_str2num(l1, l2, l3, labels):
     return Y
 
 
+def label_str2num_test(tables, labels):
+    """
+    This function will turn the string labels in to vector for the test data
+    :param tabels: contains all the labels and events info.
+    :param labels: the labels with string
+    :return: matrix of 0 and 1
+    """
+    pool = []
+    for i in tables:
+        pool.extend([ii[2] for ii in i])
+    pool = list(set(pool1))
+    pool.sort()
+
+    N = len(labels)  # number of examples
+    Y = np.zeros((N, len(pool)))  # initialization
+    for i in range(N):
+        for ii in labels[i]:  # each ii is a string
+            Y[i, pool.index(ii)] = 1
+    return Y
+
+
+
 def spectro(x, bw=707, overlap=0.9, fs=44.1e3, showplot=False):
     """
     this will calc the spectrogram, using the setting of YOU's paper
