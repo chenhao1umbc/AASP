@@ -101,7 +101,7 @@ def label_str2num_test(tables, labels):
     pool = []
     for i in tables:
         pool.extend([ii[2] for ii in i])
-    pool = list(set(pool1))
+    pool = list(set(pool))
     pool.sort()
 
     N = len(labels)  # number of examples
