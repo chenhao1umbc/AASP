@@ -84,9 +84,4 @@ for ii in [l1, l2, l3]:
 f_len, t_len = 80, 150
 X = downsample(samp_pool[1:, :], t_len=t_len, f_len=f_len)
 Y = label_str2num(l1, l2, l3, label_pool)
-torch.save([X,Y], 'aasp_test'+str(f_len)+'by'+str(t_len)+'.pt')
-# with open('aasp_train.pt', 'wb') as o:
-#     pickle.dump([X,Y], o)
-#
-# # with open('aasp_train.pt', 'rb') as o:
-# #     data = pickle.load(o)
+torch.save([X,Y], 'aasp_train'+str(f_len)+'by'+str(t_len)+'.pt')
