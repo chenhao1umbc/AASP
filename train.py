@@ -81,10 +81,10 @@ for ii in [l1, l2, l3]:
                     sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
                     for m in range(4):  # because st contains four samples
                         label_pool.append(all_labels[sect_start//2 : sect_ends//2 ])
-
-X = downsample(samp_pool[1:, :], t_len=150, f_len=80)
+f_len, t_len = 80, 150
+X = downsample(samp_pool[1:, :], t_len=t_len, f_len=f_len)
 Y = label_str2num(l1, l2, l3, label_pool)
-torch.save([X,Y], 'aasp_train_80*150.pt')
+torch.save([X,Y], 'aasp_test'+str(f_len)+'by'+str(t_len)+'.pt')
 # with open('aasp_train.pt', 'wb') as o:
 #     pickle.dump([X,Y], o)
 #
