@@ -128,11 +128,6 @@
       <list>
         <item itemvalue="Python.train" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.test" />
-<<<<<<< HEAD
-        <item itemvalue="Python.test" />
-=======
->>>>>>> 9ad83a45d3126a8934bb990411c1e603df9c669d
         <item itemvalue="Python.utils" />
       </list>
     </recent_temporary>
