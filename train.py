@@ -81,7 +81,8 @@ for ii in [l1, l2, l3]:
                     sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
                     for m in range(4):  # because st contains four samples
                         label_pool.append(all_labels[sect_start//2 : sect_ends//2 ])
-f_len, t_len = 80, 50
+f_len, t_len = 256, 200
 X = downsample(samp_pool[1:, :], t_len=t_len, f_len=f_len)
 Y = label_str2num(l1, l2, l3, label_pool)
 torch.save([X,Y], 'aasp_train_'+str(f_len)+'by'+str(t_len)+'.pt')
+# sio.savemat('train_raw.mat', {'data':samp_pool[1:, :], 'labels':label_str2num(l1, l2, l3, label_pool)})  # save raw data and label
