@@ -41,7 +41,7 @@ for ii in [l1, l2, l3]:
     mark = np.array([i[0:2] for i in ii]).astype('double')*samp_freq
     ind_mark = mark.astype('int')
     all_labels =  [i[2] for i in ii]
-    if ii is l1: st_len, st = soundtrack[0].shape[-1], np.array(soundtrack[0:4])
+    if ii is l1: st_len, st = soundtrack[0].shape[-1], np.array(soundtrack[0:4]) # sound tracks in l1
     if ii is l2: st_len, st = soundtrack[4].shape[-1], np.array(soundtrack[4:8])
     if ii is l3: st_len, st = soundtrack[8].shape[-1], np.array(soundtrack[8:])
 
@@ -55,7 +55,7 @@ for ii in [l1, l2, l3]:
         if ends > st.shape[-1]:  # out of boundary because of start moved from ind1 to (ind1 + ind2)/2
             start = ind1
             ends = start + trunc_size
-        sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
+        sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)  # find the insert location
         if sect_ends % 2 == 0:  # This is OK to choose
             samp_pool = np.vstack((samp_pool, st[:, start:ends]))
             sect_start = bisect.bisect(ind_mark.reshape(-1), start)
@@ -66,16 +66,16 @@ for ii in [l1, l2, l3]:
             if abs(ends - ind_mark[indx][0]) > abs(ends- ind_mark[indx][1]):  # ends closer to the right(bigger number)
                 ends = ind_mark[indx][1] +1  # include the tail event
                 start = ends - trunc_size
-                if ind1 < start <ind2:  # check the updated start available
+                if ind1 < start <ind2:  # check the updated start available, start not cutting event
                     samp_pool = np.vstack((samp_pool, st[:, start:ends]))
                     sect_start = bisect.bisect(ind_mark.reshape(-1), start)
                     sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)
                     for m in range(4):  # because st contains four samples
                         label_pool.append(all_labels[sect_start//2 : sect_ends//2 ])
-            else: # ends closer to the right(bigger number)
+            else: # ends closer to the left(smaller number)
                 ends = ind_mark[indx][0] - 1  # exclude the tail event
                 start = ends - trunc_size
-                if ind1 < start <ind2:  # check the updated start available
+                if ind1 < start <ind2:  # check the updated start available, start not cutting event
                     samp_pool = np.vstack((samp_pool, st[:, start:ends]))
                     sect_start = bisect.bisect(ind_mark.reshape(-1), start)
                     sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)

@@ -123,16 +123,17 @@ def spectro(x, bw=707, overlap=0.9, fs=44.1e3, showplot=False):
     :param showplot:
     :return:
     """
-    f, t, sx = sg.spectrogram(x, fs=fs, nperseg=bw, noverlap=int(bw*overlap))
+    f, t, sx = sg.spectrogram(x,window=sg.windows.hann(bw), fs=fs, nfft=int(bw*2), noverlap=int(bw*overlap))
+    sp = np.log(np.abs(sx) ** 2 + 5e-32)
     if showplot:
         plt.figure()
         plt.title('Spectrogram')
         # plt.imshow(sx, aspect='auto')
-        plt.pcolormesh(t, f, sx)
+        plt.pcolormesh(t, f, sp)
         plt.ylabel('Frequency [Hz]')
         plt.xlabel('Time [sec]')
         plt.show()
-    return sx
+    return sp
 
 
 def downsample(x, t_len=200, f_len=100):
