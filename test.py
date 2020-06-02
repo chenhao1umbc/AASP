@@ -19,8 +19,8 @@ file ='''20120921room104script1take2
 files = file.split('\n')
 files.sort()
 
-# route = '/mnt/d/Downloads/AASP_test/'
-route = '/home/chenhao1/Hpython/AASP_test/'
+route = '/mnt/d/Stored_Data/AASP/AASP_test/'
+# route = '/home/chenhao1/Hpython/AASP_test/'
 script = []
 for i in files:
     with open(route + i +'_sid.txt', 'r') as d:
@@ -34,8 +34,8 @@ for l in script:
 
 # get the data from wave files
 soundtrack = []
-# route = '/mnt/d/Downloads/AASP_test/'
-route = '/home/chenhao1/Hpython/AASP_test/'
+route = '/mnt/d/Stored_Data/AASP/AASP_test/'
+# route = '/home/chenhao1/Hpython/AASP_test/'
 track_name = [route + i +'.wav' for i in files]
 for i in track_name:
     samp_freq, _, d = readwav(i)  # samp_freq is float, d is a numpy array
@@ -61,7 +61,7 @@ for ii in range(ntracks):
         # start should between ind1 and ind2, ends should between ind1_end and ind2_end
         start = int((ind1 + ind2)/2)
         ends = start + trunc_size
-        if ends > st.shape[-1]:  # out of boundary because of start moved from ind1 to (ind1 + ind2)/2
+        if ends > st_len:  # out of boundary because of start moved from ind1 to (ind1 + ind2)/2
             start = ind1
             ends = start + trunc_size
         sect_ends = bisect.bisect(ind_mark.reshape(-1), ends)

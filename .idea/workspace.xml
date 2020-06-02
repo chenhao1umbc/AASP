@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2430903-1b34-4eff-8ed9-ac9dacf04f3e" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="process_aasp" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -18,49 +14,25 @@
       </list>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/test.py" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectId" id="1S1ArolJKBmx1S6Hrl6Wn5ftzdz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WSCDL" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myShowVariablesByDefault" value="false" />
     <option name="myUseExistingConsole" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.train">
-    <configuration name="aasp" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="process_aasp" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="process_aasp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -82,53 +54,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="process_aasp" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="utils" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="process_aasp" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.train" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.utils" />
+        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -145,18 +74,61 @@
     </task>
     <servers />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="343" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590766090459">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="343" y="185" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1590766090459" />
+    <state x="727" y="339" key="FileChooserDialogImpl" timestamp="1590770361576">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="727" y="339" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1590770361576" />
+    <state width="1325" height="819" key="GridCell.Tab.0.bottom" timestamp="1591105871851">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1325" height="819" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1591105871851" />
+    <state width="1325" height="819" key="GridCell.Tab.0.center" timestamp="1591105871849">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1325" height="819" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1591105871849" />
+    <state width="1325" height="819" key="GridCell.Tab.0.left" timestamp="1591105871847">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1325" height="819" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1591105871847" />
+    <state width="1325" height="819" key="GridCell.Tab.0.right" timestamp="1591105871850">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1325" height="819" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1591105871850" />
+    <state x="730" y="105" key="SettingsEditor" timestamp="1591105593549">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="730" y="105" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1591105593549" />
+    <state x="504" y="205" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1591107176867">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="504" y="205" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.1920.1080@0.0.1920.1080" timestamp="1591107176867" />
+    <state x="503" y="299" key="com.intellij.ide.util.TipDialog" timestamp="1586050340855">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="503" y="299" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1586050340855" />
+    <state x="736" y="461" key="com.intellij.ide.util.TipDialog/0.768.1920.1080/305.0.1366.768@305.0.1366.768" timestamp="1585589926837" />
+    <state x="503" y="217" width="672" height="676" key="search.everywhere.popup" timestamp="1591105551257">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="503" y="217" width="672" height="676" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1591105551257" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train.py</url>
-          <line>83</line>
-          <option name="timeStamp" value="1" />
+          <line>84</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/train.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <line>95</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -6,8 +6,8 @@ training data will have 1-2 events overlaping
 
 from utils import *
 
-# route = '/mnt/d/Stored_Data/AASP/AASP_train/annotation2/'
-route = '/home/chenhao1/Hpython/AASP_train/annotation2/'
+route = '/mnt/d/Stored_Data/AASP/AASP_train/annotation2/'
+# route = '/home/chenhao1/Hpython/AASP_train/annotation2/'
 with open(route + 'script01_sid.txt', 'r') as d:
     # print(type(d.read()))
     d1 = d.read()
@@ -23,8 +23,8 @@ l3 = [l.split('\t') for l in l3[:-1]]
 
 # get the data from wave files
 soundtrack = []
-# route = '/mnt/d/Stored_Data/AASP/AASP_train/bformat/'
-route = '/home/chenhao1/Hpython/AASP_train/bformat/'
+route = '/mnt/d/Stored_Data/AASP/AASP_train/bformat/'
+# route = '/home/chenhao1/Hpython/AASP_train/bformat/'
 track_name = [route + 'script0'+str(i1)+'-0'+str(i2)+'.wav' for i1 in range(1, 4) for i2 in range(1, 5)]
 for i in track_name:
     samp_freq, _, d = readwav(i)  # samp_freq is float, d is a numpy array

@@ -103,13 +103,17 @@ def label_str2num_test(tables, labels):
     for i in tables:
         pool.extend([ii[2] for ii in i])
     pool = list(set(pool))
+    pool[pool.index('knock')] = 'doorknock'
     pool.sort()
 
     N = len(labels)  # number of examples
     Y = np.zeros((N, len(pool)))  # initialization
     for i in range(N):
         for ii in labels[i]:  # each ii is a string
-            Y[i, pool.index(ii)] = 1
+            if ii == 'knock':
+                Y[i, pool.index('doorknock')] = 1
+            else:
+                Y[i, pool.index(ii)] = 1
     return Y
 
 
